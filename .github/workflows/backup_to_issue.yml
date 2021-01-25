@@ -1,0 +1,28 @@
+# name: deploy to qiniu
+
+# on:
+#   push:
+#     branches:
+#       - master
+
+# jobs:
+#   backup:
+#     name: backup to issue
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: download source file
+#         uses: actions/checkout@v2
+#         with:
+#             ref: master
+
+#       - name: setup go
+#         uses: actions/setup-go@v2
+
+#       - name: backup blog articles
+#         env:
+#           TOKEN: ${{ secrets.TOKEN }}
+#         run: |
+#           go install ./cmd/backup/
+#           ./backup github --token=$TOKEN
+
