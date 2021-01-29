@@ -1,4 +1,4 @@
-name: deploy to qiniu
+name: backup-to-issue
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 jobs:
   backup:
     name: backup to issue
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
       - name: download source file
