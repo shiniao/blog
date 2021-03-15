@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  deploy:
+  deploy-to-qiniu:
     runs-on: ubuntu-18.04
 
     steps:
@@ -34,4 +34,28 @@ jobs:
           ./qshell account $QINIU_ACCESSKEY $QINIU_SECRETKEY zhuzhezhe95@gmail.com
           ./qshell qupload2 --src-dir=./public --bucket=blog --overwrite=true
           wget https://sc.ftqq.com/$SERVER_SCKEY.send?text="blog部署OK"
+  
+  backup-to-issue:
+    name: backup to issue
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: download source file
+        uses: actions/checkout@v2
+        with:
+            ref: master
+
+      - name: setup go
+        uses: actions/setup-go@v2
+        with:
+            go-version: '^1.16.0'
+
+      - name: backup blog articles
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+        run: |
+        make install
+        ./backup github --token=$TOKEN
+
+
 
