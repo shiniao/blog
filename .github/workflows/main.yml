@@ -54,7 +54,7 @@ jobs:
         env:
           TOKEN: ${{ secrets.TOKEN }}
         run: |
-          go install ./cmd/backup/
+          go build ./cmd/backup/
           ./backup github --token=$TOKEN
 
 
