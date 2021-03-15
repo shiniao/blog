@@ -22,7 +22,5 @@ jobs:
       - name: backup blog articles
         env:
           TOKEN: ${{ secrets.TOKEN }}
-        run: |
-          go install ./cmd/backup/
-          ./backup github --token=$TOKEN
+        run: go run cmd/backup/main.go github --token=$TOKEN
 
